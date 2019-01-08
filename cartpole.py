@@ -74,7 +74,7 @@ def cartpole():
         step = 0
         while True:
             step += 1
-            #env.render()
+            env.render()
             action = dqn_solver.act(state)
             state_next, reward, terminal, info = env.step(action)
             reward = reward if not terminal else -reward
@@ -82,7 +82,7 @@ def cartpole():
             dqn_solver.remember(state, action, reward, state_next, terminal)
             state = state_next
             if terminal:
-                print "Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step)
+                print("Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step))
                 score_logger.add_score(step, run)
                 break
             dqn_solver.experience_replay()
